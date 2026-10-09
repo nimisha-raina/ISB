@@ -1,75 +1,919 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Chemical Sustainability Digital Twin</title>
+
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sustainability Data Digital Twin — Chemical Industry | Multi-Entity v4</title>
+<meta name="description" content="A progressive digitalization, provenance, confidence and dependency framework for sustainability data in the chemical industry.">
 <style>
-*{box-sizing:border-box}body{margin:0;background:#07141d;color:#e8f2f7;font:14px Arial,sans-serif}header{padding:18px 22px;border-bottom:1px solid #294352;background:#091923}h1{margin:0 0 6px;font-size:25px}.sub{color:#a8bdc9}.tabs{display:grid;grid-template-columns:repeat(7,1fr);gap:7px;margin-top:16px}.tab{background:#102632;color:#dceaf1;border:1px solid #365565;border-radius:9px;padding:11px 6px;cursor:pointer}.tab.active{background:#147eb0;border-color:#55c9ff;color:#fff}.wrap{padding:18px 22px}.panel{display:none}.panel.active{display:block}.card{background:#0b1c26;border:1px solid #294756;border-radius:13px;padding:17px;margin-bottom:14px}h2{margin:0 0 7px;font-size:21px}h3{font-size:15px;margin:20px 0 9px}.desc,.muted{color:#a8bdc9}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:13px 0}.metric{background:#0d202b;border:1px solid #2b4b5b;border-radius:10px;padding:13px}.metric small,.metric span{display:block;color:#91a9b6;font-size:10px}.metric b{display:block;font-size:19px;margin:5px 0}.flow{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:14px 0}.node{background:#102936;border:1px solid #31576a;border-radius:10px;padding:11px 14px;text-align:center}.node b,.node span{display:block}.node span{font-size:10px;color:#a8bdc9;margin-top:4px}.arrow{color:#55c9ff;font-size:18px}button.action{background:#27b3e7;border:0;border-radius:9px;color:white;font-weight:700;padding:11px 15px;cursor:pointer}.log{margin-top:12px;background:#061018;border:1px solid #284453;border-radius:9px;padding:11px;min-height:92px;max-height:170px;overflow:auto;font:12px Consolas,monospace;color:#b9d9e8}.log div{margin:4px 0}.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}.chart{background:#fff;color:#233746;border-radius:13px;padding:15px;border:1px solid #d9e3ea;box-shadow:0 5px 18px #0003}.chart-title{font-weight:700;color:#2572c7;margin-bottom:9px;font-size:14px}.chart-sub{font-size:10px;color:#718492;margin-bottom:8px}.svg{width:100%;height:240px}.gridline{stroke:#d9e1e7;stroke-width:1}.axis{stroke:#7e8e99;stroke-width:1.2}.blue{stroke:#286ac7;fill:none;stroke-width:4}.cyan{stroke:#23c4d9;fill:none;stroke-width:4}.green{stroke:#22c89a;fill:none;stroke-width:4;stroke-dasharray:8 5}.orange{stroke:#ff7a18;fill:none;stroke-width:4}.purple{stroke:#b54df0;fill:none;stroke-width:4}.yellow{stroke:#ffb000;fill:none;stroke-width:4;stroke-dasharray:8 5}.barblue{fill:#2d69c4}.barcyan{fill:#39c3db}.barred{fill:#ee5b66}.barpink{fill:#f58aaa}.baryellow{fill:#e5cf7d}.legend{display:flex;gap:13px;flex-wrap:wrap;font-size:10px;margin-top:7px}.legend i{width:9px;height:9px;border-radius:50%;display:inline-block;margin-right:4px}.table{width:100%;border-collapse:collapse;font-size:11px;margin-top:12px}.table th,.table td{border:1px solid #cdd9e0;padding:7px;text-align:left}.table th{background:#eaf2f7}.status{display:inline-block;padding:4px 7px;border-radius:5px;background:#2d69c4;color:#fff}.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:12px 0}.kpi{background:#f7fbfd;border:1px solid #d6e2e8;border-radius:10px;padding:12px;color:#263b48}.kpi small{display:block;color:#718492}.kpi b{font-size:20px}.donut{width:175px;height:175px;border-radius:50%;margin:12px auto;background:conic-gradient(#2d69c4 0 79%,#36c6d8 79% 94%,#79ddd0 94% 100%);display:grid;place-items:center}.donut>div{width:95px;height:95px;background:white;border-radius:50%;display:grid;place-content:center;text-align:center;color:#334}.donut b{font-size:20px}.bars .r{display:grid;grid-template-columns:120px 1fr 55px;gap:8px;align-items:center;margin:11px 0}.track{height:18px;background:#e9eef2;border-radius:5px;overflow:hidden}.fill{height:100%;background:#2d69c4}.ai{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.ai>div{background:#f7fbfd;color:#263b48;border:1px solid #d6e2e8;border-radius:10px;padding:13px}.ai small{color:#2572c7;font-weight:bold}.ai b,.ai span{display:block}.ai b{margin:7px 0}.ai span{font-size:11px;color:#718492}.suggest{background:#b9f5df;color:#24453b;border-radius:10px;padding:12px;font-size:11px}.source{font-size:10px;color:#7e929d;margin-top:12px}@media(max-width:900px){.tabs{grid-template-columns:repeat(4,1fr)}.metrics,.kpis,.ai{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}}@media(max-width:550px){.tabs,.metrics,.kpis,.ai{grid-template-columns:1fr}}
-</style></head><body>
-<header><h1>Chemical Sustainability Digital Twin</h1><div class="sub">Supplier → Transport → Chemical Plant → AI + Carbon → Blockchain → Customer → Holistic ESG</div>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#07141d;color:#e8f2f7;font:14px Arial,Helvetica,sans-serif}
+header{padding:18px 22px 15px;border-bottom:1px solid #294352;background:#091923;position:sticky;top:0;z-index:20}
+h1{margin:0 0 5px;font-size:25px}.sub{color:#a8bdc9}.tag{margin-top:5px;color:#64d4ff;font-weight:700}
+.tabs{display:grid;grid-template-columns:repeat(9,1fr);gap:6px;margin-top:14px}
+.tab{background:#102632;color:#dceaf1;border:1px solid #365565;border-radius:9px;padding:10px 5px;cursor:pointer;font-size:11px}
+.tab.active{background:#147eb0;border-color:#55c9ff;color:#fff}
+.wrap{padding:18px 22px;max-width:1500px;margin:auto}
+.panel{display:none}.panel.active{display:block}
+.card{background:#0b1c26;border:1px solid #294756;border-radius:13px;padding:17px;margin-bottom:14px}
+h2{margin:0 0 7px;font-size:21px}h3{font-size:15px;margin:20px 0 9px}
+.desc,.muted{color:#a8bdc9}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:13px 0}
+.metric{background:#0d202b;border:1px solid #2b4b5b;border-radius:10px;padding:13px}
+.metric small,.metric span{display:block;color:#91a9b6;font-size:10px}
+.metric b{display:block;font-size:18px;margin:5px 0}
+.flow{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:14px 0}
+.node{background:#102936;border:1px solid #31576a;border-radius:10px;padding:11px 14px;text-align:center}
+.node b,.node span{display:block}.node span{font-size:10px;color:#a8bdc9;margin-top:4px}.arrow{color:#55c9ff;font-size:18px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}.three{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.box{background:#0d202b;border:1px solid #2b4b5b;border-radius:10px;padding:13px}
+.box b{display:block;margin-bottom:6px}.box p{margin:5px 0;color:#b7cbd5;font-size:12px;line-height:1.45}
+.conf{display:inline-block;padding:4px 8px;border-radius:12px;font-weight:700;font-size:11px}
+.low{background:#5b2630;color:#ffc4ce}.med{background:#604b1d;color:#ffe2a0}.high{background:#174b3c;color:#9ff0cf}
+.action{background:#27b3e7;border:0;border-radius:9px;color:white;font-weight:700;padding:11px 15px;cursor:pointer}
+.log{margin-top:12px;background:#061018;border:1px solid #284453;border-radius:9px;padding:11px;min-height:92px;max-height:180px;overflow:auto;font:12px Consolas,monospace;color:#b9d9e8}
+.tablewrap{overflow:auto}
+.table{width:100%;border-collapse:collapse;font-size:11px;margin-top:10px;background:#fff;color:#263b48}
+.table th,.table td{border:1px solid #cdd9e0;padding:8px;text-align:left;vertical-align:top}
+.table th{background:#eaf2f7;color:#225f9d}.table tr:nth-child(even) td{background:#f8fbfd}
+.ribbon{background:#102936;border-left:4px solid #27b3e7;padding:11px 13px;border-radius:8px;margin:12px 0;color:#cce8f5}
+.path{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+.stage{padding:7px 9px;border:1px solid #365565;border-radius:16px;background:#102632;font-size:11px}
+.stage.on{border-color:#55c9ff;color:#72d9ff}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.kpi{background:#f7fbfd;border:1px solid #d6e2e8;border-radius:10px;padding:12px;color:#263b48}
+.kpi small{display:block;color:#718492}.kpi b{font-size:20px}
+.note{font-size:10px;color:#7e929d;margin-top:12px}
+.ai{background:#eef8fc;color:#263b48;border-radius:12px;padding:14px;margin-top:12px}
+.ai b{color:#1e6da8}.ai ul{margin:8px 0 0 18px;padding:0}.ai li{margin:6px 0}
+.inner-menu,.graph-menu{display:flex;gap:7px;flex-wrap:wrap;margin:14px 0 9px}
+.inner-btn,.graph-btn{background:#102632;color:#dceaf1;border:1px solid #365565;border-radius:18px;padding:8px 12px;cursor:pointer;font-size:11px}
+.inner-btn.active,.graph-btn.active{background:#147eb0;border-color:#55c9ff;color:#fff}
+.inner-panel,.graph-panel{display:none}.inner-panel.active,.graph-panel.active{display:block}
+.chart{background:#fff;color:#233746;border-radius:13px;padding:15px;border:1px solid #d9e3ea;margin-top:12px}
+.chart-title{font-weight:700;color:#2572c7;margin-bottom:7px;font-size:14px}
+.chart-sub{font-size:10px;color:#718492;margin-bottom:8px}
+.bars .r{display:grid;grid-template-columns:180px 1fr 55px;gap:8px;align-items:center;margin:10px 0}
+.track{height:18px;background:#e9eef2;border-radius:5px;overflow:hidden}
+.fill{height:100%;background:#2d69c4}
+.legend{display:flex;gap:13px;flex-wrap:wrap;font-size:10px;margin-top:7px;color:#5f7480}
+.legend i{width:9px;height:9px;border-radius:50%;display:inline-block;margin-right:4px}
+.donut{width:190px;height:190px;border-radius:50%;margin:15px auto;display:grid;place-items:center}
+.donut>div{width:108px;height:108px;background:#fff;border-radius:50%;display:grid;place-content:center;text-align:center;color:#334}
+.donut b{font-size:22px}
+.supplier-donut{background:conic-gradient(#b94151 0 28%,#cf9c2e 28% 75%,#2b9672 75% 100%)}
+.supplier-dep-donut{background:conic-gradient(#b94151 0 8%,#cf9c2e 8% 75%,#2b9672 75% 100%)}
+.transport-donut{background:conic-gradient(#b94151 0 10%,#cf9c2e 10% 80%,#2b9672 80% 100%)}
+.transport-dep-donut{background:conic-gradient(#b94151 0 10%,#cf9c2e 10% 80%,#2b9672 80% 100%)}
+.plant-donut{background:conic-gradient(#b94151 0 33%,#cf9c2e 33% 66%,#2b9672 66% 100%)}
+.plant-dep-donut{background:conic-gradient(#b94151 0 10%,#cf9c2e 10% 40%,#2b9672 40% 100%)}
+.dist-donut{background:conic-gradient(#b94151 0 25%,#cf9c2e 25% 75%,#2b9672 75% 100%)}
+.dist-dep-donut{background:conic-gradient(#b94151 0 20%,#cf9c2e 20% 70%,#2b9672 70% 100%)}
+.customer-donut{background:conic-gradient(#b94151 0 25%,#cf9c2e 25% 50%,#2b9672 50% 100%)}
+.customer-dep-donut{background:conic-gradient(#b94151 0 20%,#cf9c2e 20% 65%,#2b9672 65% 100%)}
+.ghg-donut{background:conic-gradient(#2d69c4 0 62%,#36c6d8 62% 84%,#79ddd0 84% 100%)}
+.priority-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:12px}
+.priority-box{background:#f7fbfd;color:#263b48;border:1px solid #d6e2e8;border-radius:10px;padding:11px;text-align:center}
+.priority-box b{display:block;font-size:18px;margin-top:4px}
+.exposure{font-weight:700;color:#1e6da8}.why{font-size:10px;color:#617784}
+.svg{width:100%;height:250px}.gridline{stroke:#d9e1e7;stroke-width:1}.axis{stroke:#7e8e99;stroke-width:1.2}
+.blue{stroke:#286ac7;fill:none;stroke-width:4}.greenline{stroke:#22c89a;fill:none;stroke-width:4;stroke-dasharray:8 5}
+.orange{stroke:#ff7a18;fill:none;stroke-width:4}.purple{stroke:#b54df0;fill:none;stroke-width:4}.yellow{stroke:#ffb000;fill:none;stroke-width:4;stroke-dasharray:8 5}
+@media(max-width:1200px){.tabs{grid-template-columns:repeat(5,1fr)}}
+@media(max-width:900px){.metrics,.kpis{grid-template-columns:repeat(2,1fr)}.three,.two{grid-template-columns:1fr}.priority-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:650px){header{position:static}.tabs,.metrics,.kpis{grid-template-columns:1fr}.bars .r{grid-template-columns:120px 1fr 45px}}
+
+.barblue{fill:#2d69c4}.barcyan{fill:#39c3db}.barred{fill:#ee5b66}.barpink{fill:#f58aaa}
+.status{display:inline-block;padding:4px 7px;border-radius:5px;background:#2d69c4;color:#fff}
+.suggest{background:#f7fbfd;border:1px solid #d6e2e8;border-radius:10px;padding:14px;color:#263b48;line-height:1.55}
+
+
+.entity-selector{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.entity-btn{background:#102632;color:#dceaf1;border:1px solid #365565;border-radius:18px;padding:8px 13px;cursor:pointer;font-size:11px}
+.entity-btn.active{background:#147eb0;border-color:#55c9ff;color:#fff}
+.entity-meta{font-size:11px;color:#9fb5c1;margin-top:4px}
+
+</style>
+</head>
+<body>
+<header>
+<h1>Sustainability Data Digital Twin — Chemical Industry</h1>
+<div class="sub">Supplier → Transport → Chemical Plant → Distributor → Customer → End-of-Life → Blockchain → Confidence & Dependency → Holistic ESG</div>
+<div class="tag">Capture the data. Trace its source. Measure its confidence. Understand dependency. Improve progressively.</div>
 <div class="tabs">
-<button class="tab active" data-id="supplier">1 Supplier</button><button class="tab" data-id="transport">2 Transport</button><button class="tab" data-id="plant">3 Chemical Plant</button><button class="tab" data-id="ai">4 AI + Carbon</button><button class="tab" data-id="blockchain">5 Blockchain</button><button class="tab" data-id="customer">6 Customer</button><button class="tab" data-id="holistic">7 Holistic ESG</button>
-</div></header><div class="wrap">
+<button class="tab active" data-id="supplier">1 Supplier</button>
+<button class="tab" data-id="transport">2 Transport</button>
+<button class="tab" data-id="plant">3 Chemical Plant</button>
+<button class="tab" data-id="distributor">4 Distributor</button>
+<button class="tab" data-id="customer">5 Customer</button>
+<button class="tab" data-id="circularity">6 End-of-Life</button>
+<button class="tab" data-id="blockchain">7 Blockchain</button>
+<button class="tab" data-id="dependency">8 Confidence & Dependency</button>
+<button class="tab" data-id="holistic">9 Holistic ESG</button>
+</div>
+</header>
 
-<section id="supplier" class="panel active"><div class="card"><h2>1. Supplier — Digital Batch</h2><div class="desc">Measured quantity + laboratory/QC results + supplier carbon data are linked to one batch.</div>
-<div class="flow"><div class="node"><b>Load cells / scale</b><span>1,003.6 kg</span></div><div class="arrow">→</div><div class="node"><b>Lab / QC</b><span>Purity 99.2%</span></div><div class="arrow">→</div><div class="node"><b>LIMS</b><span>Results linked</span></div><div class="arrow">→</div><div class="node"><b>Digital batch</b><span>RM-001</span></div></div>
-<div class="metrics"><div class="metric"><small>Batch ID</small><b>RM-001</b></div><div class="metric"><small>Quantity</small><b>1,003.6 kg</b></div><div class="metric"><small>Purity</small><b>99.2%</b></div><div class="metric"><small>Supplier PCF</small><b>1.84 tCO₂e</b></div></div>
-<button class="action" onclick="run('supplierLog',['Batch RM-001 created','Quantity 1,003.6 kg captured','QC/LIMS purity 99.2% linked','Supplier PCF 1.84 tCO₂e linked','Digital batch sent to transport'])">Capture & Send Batch →</button><div id="supplierLog" class="log">Ready.</div></div></section>
+<div class="wrap">
 
-<section id="transport" class="panel"><div class="card"><h2>2. Transport — Connected Shipment</h2><div class="desc">Shipment identity, truck/container status and IoT telemetry are captured as one transport record.</div>
-<div class="metrics"><div class="metric"><small>Truck / Container</small><b>TRK-4821 / CNT-07</b></div><div class="metric"><small>GPS</small><b>28.535°N</b><span>77.391°E</span></div><div class="metric"><small>Temperature</small><b>24.6°C</b></div><div class="metric"><small>Humidity</small><b>58%</b></div><div class="metric"><small>Vibration</small><b>0.8 mm/s</b></div><div class="metric"><small>Distance</small><b>42 km</b></div><div class="metric"><small>Batch</small><b>RM-001</b></div><div class="metric"><small>Status</small><b>In transit</b></div></div>
-<button class="action" onclick="run('transportLog',['Shipment RM-001 linked to TRK-4821 / CNT-07','GPS + temperature + humidity + vibration captured','Distance activity = 42 km','Telemetry packaged by IoT gateway','Shipment record sent to plant'])">Capture & Send Shipment →</button><div id="transportLog" class="log">Ready.</div></div></section>
 
-<section id="plant" class="panel"><div class="card"><h2>3. Chemical Plant — Live Process Data</h2><div class="desc">Operational sensor readings flow through the plant control/data layer and are linked to the production batch.</div>
-<div class="flow"><div class="node"><b>Sensors</b><span>TT • PT • FT • LT • VT</span></div><div class="arrow">→</div><div class="node"><b>IoT / Edge</b><span>Gateway</span></div><div class="arrow">→</div><div class="node"><b>PLC / DCS / SCADA</b><span>Control</span></div><div class="arrow">→</div><div class="node"><b>Historian</b><span>Time-series data</span></div></div>
-<div class="metrics"><div class="metric"><small>TT-201 Temperature</small><b>82.4°C</b></div><div class="metric"><small>PT-201 Pressure</small><b>4.8 bar</b></div><div class="metric"><small>FT-201 Flow</small><b>62 L/min</b></div><div class="metric"><small>LT-201 Level</small><b>78%</b></div><div class="metric"><small>VT-12 Vibration</small><b>2.1 mm/s</b></div><div class="metric"><small>Energy meter</small><b>418 kWh</b></div></div>
-<button class="action" onclick="run('plantLog',['Plant snapshot requested','TT/PT/FT/LT/VT readings captured','Energy = 418 kWh captured','Gateway → PLC/DCS/SCADA → Historian','Snapshot linked to production batch RM-001'])">Capture Plant Snapshot →</button><div id="plantLog" class="log">Ready.</div></div></section>
+<section id="supplier" class="panel"><div class="card">
+<h2>1. Supplier — Multi-Supplier Raw Material, Provenance & Embedded Carbon</h2>
+<div class="desc">Select Supplier A, B or C to compare different data-capture maturity, evidence quality and carbon information for chemical-industry inputs.</div>
+<div class="entity-selector"><button class="entity-btn active" onclick="selectEntity('supplier','A',this)">Supplier A</button><button class="entity-btn" onclick="selectEntity('supplier','B',this)">Supplier B</button><button class="entity-btn" onclick="selectEntity('supplier','C',this)">Supplier C</button></div>
+<div class="metrics">
+<div class="metric"><small>Selected supplier</small><b id="supplier_m1">—</b><span id="supplier_s1">—</span></div>
+<div class="metric"><small>Batch quantity / purity</small><b id="supplier_m2">—</b><span id="supplier_s2">—</span></div>
+<div class="metric"><small>Supplier-stage footprint</small><b id="supplier_m3">—</b><span id="supplier_s3">—</span></div>
+<div class="metric"><small>Data confidence</small><b id="supplier_m4">—</b><span id="supplier_s4">—</span></div>
+</div>
+<div id="supplier_extra"></div>
+<div class="tablewrap"><table class="table">
+<thead><tr id="supplier_thead"></tr></thead>
+<tbody id="supplier_tbody"></tbody>
+</table></div>
+<div class="path" id="supplier_path"></div>
+<button class="action" onclick="run('supplierLog',entityData['supplier'][selectedEntities['supplier']].log)">Assess Selected Record →</button>
+<div id="supplierLog" class="log">Ready.</div>
+</div></section>
 
-<section id="ai" class="panel"><div class="card"><h2>4. AI + Carbon — Calculation & Insights</h2><div class="desc">AI analyzes operational patterns. Carbon is calculated from activity data and emission factors.</div>
-<div class="metrics"><div class="metric"><small>Activity data</small><b>418 kWh</b></div><div class="metric"><small>Illustrative factor</small><b>0.50 kgCO₂e/kWh</b></div><div class="metric"><small>Calculated result</small><b>0.21 tCO₂e</b></div><div class="metric"><small>AI signal</small><b>Energy anomaly</b></div></div>
-<div class="flow"><div class="node"><b>418 kWh</b><span>Activity</span></div><div class="arrow">×</div><div class="node"><b>0.50 kgCO₂e/kWh</b><span>Emission factor</span></div><div class="arrow">=</div><div class="node"><b>209 kgCO₂e</b><span>0.21 tCO₂e</span></div></div>
-<button class="action" onclick="run('aiLog',['Activity data = 418 kWh','Emission factor = 0.50 kgCO₂e/kWh','418 × 0.50 = 209 kgCO₂e','Result = 0.21 tCO₂e','AI checks hotspot, anomaly and target deviation'])">Calculate & Analyze →</button><div id="aiLog" class="log">Ready.</div></div></section>
 
-<section id="blockchain" class="panel"><div class="card"><h2>5. Blockchain — Traceability Proof</h2><div class="desc">High-volume telemetry remains in operational databases. Selected lifecycle proofs are written to the ledger.</div><div class="flow"><div class="node"><b>Batch proof</b><span>RM-001</span></div><div class="arrow">→</div><div class="node"><b>Shipment proof</b><span>Verified event</span></div><div class="arrow">→</div><div class="node"><b>Carbon proof</b><span>Calculation hash</span></div><div class="arrow">→</div><div class="node"><b>Ledger</b><span>Immutable reference</span></div></div>
-<button class="action" onclick="run('blockLog',['Selected lifecycle event prepared','Record hash generated','Carbon verification reference attached','Ledger transaction committed'])">Write Verification Event →</button><div id="blockLog" class="log">Ready.</div></div></section>
 
-<section id="customer" class="panel"><div class="card"><h2>6. Customer — Digital Product Passport</h2><div class="desc">A customer-facing record summarizes batch identity, quality, footprint and traceability.</div><div class="metrics"><div class="metric"><small>Product batch</small><b>RM-001</b></div><div class="metric"><small>Quality</small><b>99.2%</b></div><div class="metric"><small>Product footprint</small><b>Illustrative</b></div><div class="metric"><small>Traceability</small><b>Verified</b></div></div>
-<button class="action" onclick="run('customerLog',['Product passport requested','Batch + QC + footprint assembled','Ledger proof checked','Customer passport generated'])">Generate Product Passport →</button><div id="customerLog" class="log">Ready.</div></div></section>
+<section id="transport" class="panel"><div class="card">
+<h2>2. Transport — Multi-Transporter Chemical Logistics</h2>
+<div class="desc">Select among three transporters to compare road/rail logistics, carbon footprint, evidence quality and confidence.</div>
+<div class="entity-selector"><button class="entity-btn active" onclick="selectEntity('transport','A',this)">Transporter A</button><button class="entity-btn" onclick="selectEntity('transport','B',this)">Transporter B</button><button class="entity-btn" onclick="selectEntity('transport','C',this)">Transporter C</button></div>
+<div class="metrics">
+<div class="metric"><small>Selected transporter</small><b id="transport_m1">—</b><span id="transport_s1">—</span></div>
+<div class="metric"><small>Mode / distance</small><b id="transport_m2">—</b><span id="transport_s2">—</span></div>
+<div class="metric"><small>Transport footprint</small><b id="transport_m3">—</b><span id="transport_s3">—</span></div>
+<div class="metric"><small>Data confidence</small><b id="transport_m4">—</b><span id="transport_s4">—</span></div>
+</div>
+<div id="transport_extra"></div>
+<div class="tablewrap"><table class="table">
+<thead><tr id="transport_thead"></tr></thead>
+<tbody id="transport_tbody"></tbody>
+</table></div>
+<div class="path" id="transport_path"></div>
+<button class="action" onclick="run('transportLog',entityData['transport'][selectedEntities['transport']].log)">Assess Selected Record →</button>
+<div id="transportLog" class="log">Ready.</div>
+</div></section>
 
-<section id="holistic" class="panel"><div class="card"><h2>7. Holistic ESG Dashboard — Chemical Industry</h2><div class="desc">A graphical management view of data aggregation, energy, GHG emissions, target tracking, data-entry visibility and AI insights. Values are illustrative.</div>
-<div class="kpis"><div class="kpi"><small>Total emissions</small><b>5,520 tCO₂e</b></div><div class="kpi"><small>Current energy</small><b>418 MWh</b></div><div class="kpi"><small>Data completion</small><b>86%</b></div><div class="kpi"><small>Reduction vs baseline</small><b>12%</b></div></div>
 
-<h3>ESG Data Aggregation</h3><div class="flow"><div class="node"><b>Plant OT</b><span>DCS • PLC • Historian</span></div><div class="arrow">+</div><div class="node"><b>ERP / Production</b><span>Batch • Yield • Material</span></div><div class="arrow">+</div><div class="node"><b>LIMS / Quality</b><span>QC • Product</span></div><div class="arrow">+</div><div class="node"><b>Supply Chain</b><span>Supplier • Logistics</span></div><div class="arrow">→</div><div class="node"><b>ESG Data Layer</b><span>Validate • Aggregate • Analyze</span></div></div>
 
-<div class="two">
-<div class="chart"><div class="chart-title">Energy Inputs</div><div class="chart-sub">Illustrative monthly chemical-plant energy trend (MWh)</div><svg class="svg" viewBox="0 0 650 240"><g class="gridline"><line x1="55" y1="35" x2="625" y2="35"/><line x1="55" y1="80" x2="625" y2="80"/><line x1="55" y1="125" x2="625" y2="125"/><line x1="55" y1="170" x2="625" y2="170"/></g><g class="axis"><line x1="55" y1="20" x2="55" y2="200"/><line x1="55" y1="200" x2="625" y2="200"/></g><polyline class="blue" points="65,168 145,151 225,158 305,126 385,112 465,87 545,95 615,68"/><g fill="#286ac7"><circle cx="65" cy="168" r="5"/><circle cx="145" cy="151" r="5"/><circle cx="225" cy="158" r="5"/><circle cx="305" cy="126" r="5"/><circle cx="385" cy="112" r="5"/><circle cx="465" cy="87" r="5"/><circle cx="545" cy="95" r="5"/><circle cx="615" cy="68" r="5"/></g><g font-size="10" fill="#667"><text x="55" y="220">Jan</text><text x="135" y="220">Feb</text><text x="215" y="220">Mar</text><text x="295" y="220">Apr</text><text x="375" y="220">May</text><text x="455" y="220">Jun</text><text x="535" y="220">Jul</text><text x="605" y="220">Aug</text></g></svg></div>
-<div class="chart"><div class="chart-title">GHG Emission Analytics</div><div class="chart-sub">Illustrative Scope 1, 2 and 3 contribution</div><div class="donut"><div><b>5,520</b><small>tCO₂e</small></div></div><div class="legend"><span><i style="background:#2d69c4"></i>Scope 3 62%</span><span><i style="background:#36c6d8"></i>Scope 1 22%</span><span><i style="background:#79ddd0"></i>Scope 2 16%</span></div></div>
+<section id="plant" class="panel"><div class="card">
+<h2>3. Chemical Plant — Plant 1, Plant 2 & Plant 3</h2>
+<div class="desc">Select a plant to compare process data, material balance, carbon, waste, measurement maturity and confidence.</div>
+<div class="entity-selector"><button class="entity-btn active" onclick="selectEntity('plant','1',this)">Plant 1</button><button class="entity-btn" onclick="selectEntity('plant','2',this)">Plant 2</button><button class="entity-btn" onclick="selectEntity('plant','3',this)">Plant 3</button></div>
+<div class="metrics">
+<div class="metric"><small>Selected plant</small><b id="plant_m1">—</b><span id="plant_s1">—</span></div>
+<div class="metric"><small>Production / yield</small><b id="plant_m2">—</b><span id="plant_s2">—</span></div>
+<div class="metric"><small>Plant-stage footprint</small><b id="plant_m3">—</b><span id="plant_s3">—</span></div>
+<div class="metric"><small>Data confidence</small><b id="plant_m4">—</b><span id="plant_s4">—</span></div>
+</div>
+<div id="plant_extra"></div>
+<div class="tablewrap"><table class="table">
+<thead><tr id="plant_thead"></tr></thead>
+<tbody id="plant_tbody"></tbody>
+</table></div>
+<div class="path" id="plant_path"></div>
+<button class="action" onclick="run('plantLog',entityData['plant'][selectedEntities['plant']].log)">Assess Selected Record →</button>
+<div id="plantLog" class="log">Ready.</div>
+</div></section>
+
+
+
+<section id="distributor" class="panel"><div class="card">
+<h2>4. Distributor — Multi-Distributor Warehouse & Secondary Logistics</h2>
+<div class="desc">Select Distributor A, B or C to compare storage, secondary transport, carbon, documentation and confidence.</div>
+<div class="entity-selector"><button class="entity-btn active" onclick="selectEntity('distributor','A',this)">Distributor A</button><button class="entity-btn" onclick="selectEntity('distributor','B',this)">Distributor B</button><button class="entity-btn" onclick="selectEntity('distributor','C',this)">Distributor C</button></div>
+<div class="metrics">
+<div class="metric"><small>Selected distributor</small><b id="distributor_m1">—</b><span id="distributor_s1">—</span></div>
+<div class="metric"><small>Volume / storage</small><b id="distributor_m2">—</b><span id="distributor_s2">—</span></div>
+<div class="metric"><small>Distributor footprint</small><b id="distributor_m3">—</b><span id="distributor_s3">—</span></div>
+<div class="metric"><small>Data confidence</small><b id="distributor_m4">—</b><span id="distributor_s4">—</span></div>
+</div>
+<div id="distributor_extra"></div>
+<div class="tablewrap"><table class="table">
+<thead><tr id="distributor_thead"></tr></thead>
+<tbody id="distributor_tbody"></tbody>
+</table></div>
+<div class="path" id="distributor_path"></div>
+<button class="action" onclick="run('distributorLog',entityData['distributor'][selectedEntities['distributor']].log)">Assess Selected Record →</button>
+<div id="distributorLog" class="log">Ready.</div>
+</div></section>
+
+
+
+<section id="customer" class="panel"><div class="card">
+<h2>5. Customer / End Use — Multi-Customer Sustainability Record</h2>
+<div class="desc">Select Customer A, B or C to compare downstream data coverage, product-volume dependency and confidence.</div>
+<div class="entity-selector"><button class="entity-btn active" onclick="selectEntity('customer','A',this)">Customer A</button><button class="entity-btn" onclick="selectEntity('customer','B',this)">Customer B</button><button class="entity-btn" onclick="selectEntity('customer','C',this)">Customer C</button></div>
+<div class="metrics">
+<div class="metric"><small>Selected customer</small><b id="customer_m1">—</b><span id="customer_s1">—</span></div>
+<div class="metric"><small>Sales / product share</small><b id="customer_m2">—</b><span id="customer_s2">—</span></div>
+<div class="metric"><small>Upstream footprint</small><b id="customer_m3">—</b><span id="customer_s3">—</span></div>
+<div class="metric"><small>Data confidence</small><b id="customer_m4">—</b><span id="customer_s4">—</span></div>
+</div>
+<div id="customer_extra"></div>
+<div class="tablewrap"><table class="table">
+<thead><tr id="customer_thead"></tr></thead>
+<tbody id="customer_tbody"></tbody>
+</table></div>
+<div class="path" id="customer_path"></div>
+<button class="action" onclick="run('customerLog',entityData['customer'][selectedEntities['customer']].log)">Assess Selected Record →</button>
+<div id="customerLog" class="log">Ready.</div>
+</div></section>
+
+
+
+<section id="circularity" class="panel"><div class="card">
+<h2>6. End-of-Life, Recycling, Waste & Circularity — Three Partners</h2>
+<div class="desc">Select among three end-of-life / recovery partners to compare recovery route, waste treatment, circularity evidence and confidence.</div>
+<div class="entity-selector"><button class="entity-btn active" onclick="selectEntity('circularity','A',this)">Recovery Partner A</button><button class="entity-btn" onclick="selectEntity('circularity','B',this)">Recovery Partner B</button><button class="entity-btn" onclick="selectEntity('circularity','C',this)">Recovery Partner C</button></div>
+<div class="metrics">
+<div class="metric"><small>Selected partner</small><b id="circularity_m1">—</b><span id="circularity_s1">—</span></div>
+<div class="metric"><small>Recovery route</small><b id="circularity_m2">—</b><span id="circularity_s2">—</span></div>
+<div class="metric"><small>Waste / recovery footprint</small><b id="circularity_m3">—</b><span id="circularity_s3">—</span></div>
+<div class="metric"><small>Data confidence</small><b id="circularity_m4">—</b><span id="circularity_s4">—</span></div>
+</div>
+<div id="circularity_extra"></div>
+<div class="tablewrap"><table class="table">
+<thead><tr id="circularity_thead"></tr></thead>
+<tbody id="circularity_tbody"></tbody>
+</table></div>
+<div class="path" id="circularity_path"></div>
+<button class="action" onclick="run('circularityLog',entityData['circularity'][selectedEntities['circularity']].log)">Assess Selected Record →</button>
+<div id="circularityLog" class="log">Ready.</div>
+</div></section>
+
+
+<section id="blockchain" class="panel"><div class="card">
+<h2>7. Blockchain — Detailed Lifecycle Proof & Traceability</h2>
+<div class="desc">Selected lifecycle evidence is anchored as proof. High-volume operational data remains in source systems; blockchain preserves integrity, chronology and chain-of-custody references.</div>
+<div class="flow">
+<div class="node"><b>Supplier Batch Proof</b><span>Batch • source • quantity</span></div><div class="arrow">→</div>
+<div class="node"><b>QC / Lab Proof</b><span>CoA • LIMS • purity</span></div><div class="arrow">→</div>
+<div class="node"><b>Shipment Proof</b><span>Mode • route • custody</span></div><div class="arrow">→</div>
+<div class="node"><b>Plant Production Proof</b><span>Batch • yield • process</span></div>
+</div>
+<div class="flow">
+<div class="node"><b>Carbon Proof</b><span>Activity • factors • result</span></div><div class="arrow">→</div>
+<div class="node"><b>Waste / Recovery Proof</b><span>Waste • recycler • recovery</span></div><div class="arrow">→</div>
+<div class="node"><b>Distribution Proof</b><span>Warehouse • dispatch</span></div><div class="arrow">→</div>
+<div class="node"><b>Customer Delivery Proof</b><span>Receipt • batch • quantity</span></div><div class="arrow">→</div>
+<div class="node"><b>Verification Proof</b><span>Version • reviewer • timestamp</span></div>
+</div>
+<div class="tablewrap"><table class="table">
+<tr><th>Proof</th><th>Selected information anchored</th><th>Original evidence remains in</th><th>Purpose</th></tr>
+<tr><td>Supplier Batch Proof</td><td>Batch ID, raw-material origin, quantity, declaration hash</td><td>Supplier ERP / document store</td><td>Origin and batch integrity</td></tr>
+<tr><td>QC / Lab Proof</td><td>CoA, test result reference, LIMS record version</td><td>LIMS / laboratory system</td><td>Quality evidence integrity</td></tr>
+<tr><td>Shipment Proof</td><td>Shipment ID, mode, custody event, route evidence</td><td>TMS / GPS / transporter records</td><td>Chain of custody</td></tr>
+<tr><td>Plant Production Proof</td><td>Production batch, input/output, yield, process-record version</td><td>ERP / MES / historian</td><td>Manufacturing traceability</td></tr>
+<tr><td>Carbon Proof</td><td>Activity-data references, factor version, calculation result</td><td>ESG / carbon calculation layer</td><td>Reproducibility</td></tr>
+<tr><td>Waste / Recovery Proof</td><td>Waste quantity, manifest, recycler evidence reference</td><td>Waste system / vendor documents</td><td>Circularity assurance</td></tr>
+<tr><td>Distribution Proof</td><td>Warehouse receipt, storage and dispatch event</td><td>Distributor ERP / WMS</td><td>Downstream traceability</td></tr>
+<tr><td>Customer Delivery Proof</td><td>Delivered batch, quantity, receipt confirmation</td><td>Invoice / ERP / delivery record</td><td>Final custody confirmation</td></tr>
+<tr><td>Verification Proof</td><td>Reviewer, status, methodology version, timestamp</td><td>Audit / assurance repository</td><td>Audit trail</td></tr>
+</table></div>
+<div class="ribbon"><b>Important:</b> blockchain protects the integrity/history of selected records. It does not turn weak source data into accurate data; confidence still depends on evidence quality, completeness and verification.</div>
+<button class="action" onclick="run('bcLog',['Supplier batch + QC proof anchored','Shipment custody proof anchored','Plant production proof anchored','Carbon calculation proof anchored','Waste / recovery proof anchored','Distribution + delivery proof anchored','Verification proof completes lifecycle traceability'])">Write Full Lifecycle Proofs →</button>
+<div id="bcLog" class="log">Ready.</div>
+</div></section>
+
+<section id="dependency" class="panel"><div class="card">
+<h2>8. Data Confidence & Dependency Analysis</h2>
+<div class="desc">The management question is not only “Who is Low / Medium / High?” but also “How much of our business depends on each confidence category?” Click a stakeholder group to see named entities, confidence and exposure.</div>
+
+<div class="ribbon"><b>Exposure-weighted confidence:</b> a Low-confidence supplier representing 1% of input may be less material than a Medium-confidence supplier representing 42% of input. This view supports prioritization without automatically ranking only by confidence label.</div>
+
+<div class="inner-menu">
+<button class="inner-btn active" onclick="showInner('dSup',this)">Suppliers</button>
+<button class="inner-btn" onclick="showInner('dTrans',this)">Transporters</button>
+<button class="inner-btn" onclick="showInner('dPlant',this)">Plants</button>
+<button class="inner-btn" onclick="showInner('dDist',this)">Distributors</button>
+<button class="inner-btn" onclick="showInner('dCust',this)">Customers</button>
 </div>
 
-<h3>GHG Emissions Tracking — Production vs Emissions by Scope</h3>
-<div class="chart"><svg class="svg" viewBox="0 0 850 250"><g class="gridline"><line x1="55" y1="35" x2="820" y2="35"/><line x1="55" y1="85" x2="820" y2="85"/><line x1="55" y1="135" x2="820" y2="135"/><line x1="55" y1="185" x2="820" y2="185"/></g><g class="axis"><line x1="55" y1="20" x2="55" y2="210"/><line x1="55" y1="210" x2="820" y2="210"/></g>
-<g><rect class="barblue" x="75" y="78" width="42" height="52"/><rect class="barcyan" x="75" y="130" width="42" height="25"/><rect class="barred" x="75" y="155" width="42" height="24"/><rect class="barpink" x="75" y="179" width="42" height="16"/>
+<div id="dSup" class="inner-panel active">
+<div class="two">
+<div class="chart"><div class="chart-title">Supplier Count by Confidence</div><div class="donut supplier-donut"><div><b>100</b><small>suppliers</small></div></div><div class="legend"><span><i style="background:#b94151"></i>Low 28</span><span><i style="background:#cf9c2e"></i>Medium 47</span><span><i style="background:#2b9672"></i>High 25</span></div></div>
+<div class="chart"><div class="chart-title">Input Volume by Confidence</div><div class="donut supplier-dep-donut"><div><b>100%</b><small>input</small></div></div><div class="legend"><span><i style="background:#b94151"></i>Low 8%</span><span><i style="background:#cf9c2e"></i>Medium 67%</span><span><i style="background:#2b9672"></i>High 25%</span></div></div>
+</div>
+<div class="tablewrap"><table class="table">
+<tr><th>Supplier</th><th>Material</th><th>% of total input</th><th>Data capture</th><th>Confidence</th><th>Main weak area</th></tr>
+<tr><td>Supplier A</td><td>Solvent</td><td class="exposure">18%</td><td>Invoices + digital weighing</td><td><span class="conf med">MEDIUM</span></td><td>Steam allocation</td></tr>
+<tr><td>Supplier B</td><td>Bulk raw material</td><td class="exposure">42%</td><td>Excel + invoices + selected meters</td><td><span class="conf med">MEDIUM</span></td><td>Waste + fuel</td></tr>
+<tr><td>Supplier C</td><td>Specialty intermediate</td><td class="exposure">20%</td><td>ERP + meter + verified records</td><td><span class="conf high">HIGH</span></td><td>Minor Scope 3 gaps</td></tr>
+<tr><td>Supplier D</td><td>Packaging</td><td class="exposure">3%</td><td>Manual declaration; limited evidence</td><td><span class="conf low">LOW</span></td><td>Energy / waste</td></tr>
+<tr><td>Supplier E</td><td>Additive</td><td class="exposure">7%</td><td>Invoice + manual meter log</td><td><span class="conf med">MEDIUM</span></td><td>Water / waste</td></tr>
+<tr><td>Supplier F</td><td>Catalyst</td><td class="exposure">5%</td><td>Digital meter + ERP</td><td><span class="conf high">HIGH</span></td><td>Verification frequency</td></tr>
+<tr><td>Supplier G</td><td>Auxiliary chemical</td><td class="exposure">4%</td><td>Estimate + paper log</td><td><span class="conf low">LOW</span></td><td>Carbon / energy</td></tr>
+<tr><td>Supplier H</td><td>Lab chemical</td><td class="exposure">1%</td><td>Manual declaration</td><td><span class="conf low">LOW</span></td><td>Nearly all ESG fields</td></tr>
+</table></div>
+<div class="ribbon"><b>Illustrative planning insight:</b> Supplier B alone represents 42% of input volume and is Medium confidence. Improving Supplier B may improve confidence over a much larger share of the business than digitizing Supplier H, which is Low confidence but only 1% of input.</div>
+</div>
+
+<div id="dTrans" class="inner-panel">
+<div class="two">
+<div class="chart"><div class="chart-title">Transporter Count by Confidence</div><div class="donut transport-donut"><div><b>10</b><small>transporters</small></div></div><div class="legend"><span><i style="background:#b94151"></i>Low 1</span><span><i style="background:#cf9c2e"></i>Medium 7</span><span><i style="background:#2b9672"></i>High 2</span></div></div>
+<div class="chart"><div class="chart-title">Ton-km / Transport Exposure by Confidence</div><div class="donut transport-dep-donut"><div><b>100%</b><small>ton-km</small></div></div><div class="legend"><span><i style="background:#b94151"></i>Low 10%</span><span><i style="background:#cf9c2e"></i>Medium 70%</span><span><i style="background:#2b9672"></i>High 20%</span></div></div>
+</div>
+<div class="tablewrap"><table class="table">
+<tr><th>Transporter</th><th>Main mode</th><th>% transport exposure</th><th>Evidence</th><th>Confidence</th><th>Main weak area</th></tr>
+<tr><td>Transporter A</td><td>Road tanker</td><td class="exposure">40%</td><td>GPS + invoice; allocated fuel</td><td><span class="conf med">MEDIUM</span></td><td>Trip-specific fuel</td></tr>
+<tr><td>Transporter B</td><td>Road container</td><td class="exposure">20%</td><td>GPS + telematics + digital POD</td><td><span class="conf high">HIGH</span></td><td>Minor return-load gap</td></tr>
+<tr><td>Transporter C</td><td>Rail</td><td class="exposure">20%</td><td>Rail records + standard factors</td><td><span class="conf med">MEDIUM</span></td><td>Actual energy allocation</td></tr>
+<tr><td>Transporter D</td><td>Road truck</td><td class="exposure">10%</td><td>Manual route + invoice</td><td><span class="conf low">LOW</span></td><td>Distance / fuel evidence</td></tr>
+<tr><td>Transporter E</td><td>Ship</td><td class="exposure">10%</td><td>Carrier record + documented route</td><td><span class="conf med">MEDIUM</span></td><td>Carrier-specific emissions</td></tr>
+</table></div>
+</div>
+
+<div id="dPlant" class="inner-panel">
+<div class="two">
+<div class="chart"><div class="chart-title">Plant Count by Confidence</div><div class="donut plant-donut"><div><b>3</b><small>plants</small></div></div><div class="legend"><span><i style="background:#b94151"></i>Low 1</span><span><i style="background:#cf9c2e"></i>Medium 1</span><span><i style="background:#2b9672"></i>High 1</span></div></div>
+<div class="chart"><div class="chart-title">Production Volume by Confidence</div><div class="donut plant-dep-donut"><div><b>100%</b><small>production</small></div></div><div class="legend"><span><i style="background:#b94151"></i>Low 10%</span><span><i style="background:#cf9c2e"></i>Medium 30%</span><span><i style="background:#2b9672"></i>High 60%</span></div></div>
+</div>
+<div class="tablewrap"><table class="table">
+<tr><th>Plant</th><th>% production</th><th>Data landscape</th><th>Confidence</th><th>Main weak area</th></tr>
+<tr><td>Plant 1</td><td class="exposure">60%</td><td>ERP/MES + meters + selected sensors + LIMS</td><td><span class="conf high">HIGH</span></td><td>Some steam / Scope 3 evidence</td></tr>
+<tr><td>Plant 2</td><td class="exposure">30%</td><td>Digital meters + Excel + ERP</td><td><span class="conf med">MEDIUM</span></td><td>Waste and steam allocation</td></tr>
+<tr><td>Plant 3</td><td class="exposure">10%</td><td>Paper logs + monthly invoices</td><td><span class="conf low">LOW</span></td><td>Process energy / waste / water detail</td></tr>
+</table></div>
+</div>
+
+<div id="dDist" class="inner-panel">
+<div class="two">
+<div class="chart"><div class="chart-title">Distributor Count by Confidence</div><div class="donut dist-donut"><div><b>4</b><small>distributors</small></div></div><div class="legend"><span><i style="background:#b94151"></i>Low 1</span><span><i style="background:#cf9c2e"></i>Medium 2</span><span><i style="background:#2b9672"></i>High 1</span></div></div>
+<div class="chart"><div class="chart-title">Product Volume Handled by Confidence</div><div class="donut dist-dep-donut"><div><b>100%</b><small>volume</small></div></div><div class="legend"><span><i style="background:#b94151"></i>Low 20%</span><span><i style="background:#cf9c2e"></i>Medium 50%</span><span><i style="background:#2b9672"></i>High 30%</span></div></div>
+</div>
+<div class="tablewrap"><table class="table">
+<tr><th>Distributor</th><th>% product volume</th><th>Data capture</th><th>Confidence</th><th>Main weak area</th></tr>
+<tr><td>Distributor A</td><td class="exposure">35%</td><td>ERP + warehouse invoices</td><td><span class="conf med">MEDIUM</span></td><td>Warehouse energy allocation</td></tr>
+<tr><td>Distributor B</td><td class="exposure">30%</td><td>WMS + metered warehouse + digital dispatch</td><td><span class="conf high">HIGH</span></td><td>Minor packaging returns</td></tr>
+<tr><td>Distributor C</td><td class="exposure">20%</td><td>Manual records + transport invoices</td><td><span class="conf low">LOW</span></td><td>Storage energy / returns</td></tr>
+<tr><td>Distributor D</td><td class="exposure">15%</td><td>ERP + invoice + route data</td><td><span class="conf med">MEDIUM</span></td><td>Secondary transport fuel</td></tr>
+</table></div>
+</div>
+
+<div id="dCust" class="inner-panel">
+<div class="two">
+<div class="chart"><div class="chart-title">Customer Count by Confidence</div><div class="donut customer-donut"><div><b>4</b><small>customers</small></div></div><div class="legend"><span><i style="background:#b94151"></i>Low 1</span><span><i style="background:#cf9c2e"></i>Medium 1</span><span><i style="background:#2b9672"></i>High 2</span></div></div>
+<div class="chart"><div class="chart-title">Sales / Product Volume by Confidence</div><div class="donut customer-dep-donut"><div><b>100%</b><small>volume</small></div></div><div class="legend"><span><i style="background:#b94151"></i>Low 20%</span><span><i style="background:#cf9c2e"></i>Medium 45%</span><span><i style="background:#2b9672"></i>High 35%</span></div></div>
+</div>
+<div class="tablewrap"><table class="table">
+<tr><th>Customer</th><th>% sales / product volume</th><th>Downstream data exchange</th><th>Confidence</th><th>Main weak area</th></tr>
+<tr><td>Customer A</td><td class="exposure">45%</td><td>Purchase/receipt + limited use data</td><td><span class="conf med">MEDIUM</span></td><td>Actual use-stage energy</td></tr>
+<tr><td>Customer B</td><td class="exposure">25%</td><td>Structured digital sustainability data exchange</td><td><span class="conf high">HIGH</span></td><td>Minor end-of-life data</td></tr>
+<tr><td>Customer C</td><td class="exposure">20%</td><td>Invoice/receipt only</td><td><span class="conf low">LOW</span></td><td>Use / recovery data</td></tr>
+<tr><td>Customer D</td><td class="exposure">10%</td><td>Digital receipt + recovery reporting</td><td><span class="conf high">HIGH</span></td><td>Verification frequency</td></tr>
+</table></div>
+</div>
+
+<h3>Cross-Value-Chain Planning View</h3>
+<div class="tablewrap"><table class="table">
+<tr><th>Stakeholder group</th><th>Largest exposure category</th><th>% exposure</th><th>Interpretation</th></tr>
+<tr><td>Suppliers</td><td><span class="conf med">MEDIUM</span></td><td>67% of input volume</td><td>Medium-confidence supplier improvement can influence most purchased input.</td></tr>
+<tr><td>Transporters</td><td><span class="conf med">MEDIUM</span></td><td>70% of transport exposure</td><td>Trip-specific fuel and route evidence can improve a large share.</td></tr>
+<tr><td>Plants</td><td><span class="conf high">HIGH</span></td><td>60% of production</td><td>The largest plant is already strongly measured; target weaker plants selectively.</td></tr>
+<tr><td>Distributors</td><td><span class="conf med">MEDIUM</span></td><td>50% of product volume</td><td>Warehouse energy and secondary logistics are practical focus areas.</td></tr>
+<tr><td>Customers</td><td><span class="conf med">MEDIUM</span></td><td>45% of sales/product volume</td><td>Downstream use data from the largest customer could materially improve coverage.</td></tr>
+</table></div>
+<div class="note">All entity names and percentages are illustrative prototype data. In live deployment these would come from the participating company's actual supplier, logistics, plant, distributor and customer records.</div>
+</div></section>
+
+
+<section id="holistic" class="panel"><div class="card">
+<h2>9. Holistic ESG — Interactive Reporting & Management View</h2>
+<div class="desc">A richer graphical management dashboard combining the original ESG visualizations with the new sustainability-data confidence framework. Click a topic to display the relevant graph.</div>
+
+<div class="kpis">
+<div class="kpi"><small>Total emissions</small><b>5,520 tCO₂e</b></div>
+<div class="kpi"><small>Current energy</small><b>418 MWh</b></div>
+<div class="kpi"><small>Data completion</small><b>86%</b></div>
+<div class="kpi"><small>Reduction vs baseline</small><b>12%</b></div>
+</div>
+
+<h3>ESG Data Aggregation</h3>
+<div class="flow">
+<div class="node"><b>Plant OT</b><span>DCS • PLC • Historian</span></div><div class="arrow">+</div>
+<div class="node"><b>ERP / Production</b><span>Batch • Yield • Material</span></div><div class="arrow">+</div>
+<div class="node"><b>LIMS / Quality</b><span>QC • Product</span></div><div class="arrow">+</div>
+<div class="node"><b>Supply Chain</b><span>Supplier • Logistics</span></div><div class="arrow">+</div>
+<div class="node"><b>Distribution / Customer</b><span>Storage • Delivery • Use</span></div><div class="arrow">→</div>
+<div class="node"><b>ESG Data Layer</b><span>Validate • Aggregate • Analyze</span></div>
+</div>
+
+<div class="graph-menu">
+<button class="graph-btn active" onclick="showGraph('gEnergy',this)">Energy Inputs</button>
+<button class="graph-btn" onclick="showGraph('gScope',this)">GHG Scope</button>
+<button class="graph-btn" onclick="showGraph('gProdScope',this)">Production vs Scope</button>
+<button class="graph-btn" onclick="showGraph('gTarget',this)">Target Tracking</button>
+<button class="graph-btn" onclick="showGraph('gRecords',this)">Data Entry Visibility</button>
+<button class="graph-btn" onclick="showGraph('gWater',this)">Water</button>
+<button class="graph-btn" onclick="showGraph('gWaste',this)">Waste & Circularity</button>
+<button class="graph-btn" onclick="showGraph('gConf',this)">Data Confidence</button>
+<button class="graph-btn" onclick="showGraph('gDependencyESG',this)">Dependency Exposure</button>
+</div>
+
+<div id="gEnergy" class="graph-panel active">
+<div class="chart">
+<div class="chart-title">Energy Inputs</div>
+<div class="chart-sub">Illustrative monthly chemical-plant energy trend (MWh)</div>
+<svg class="svg" viewBox="0 0 650 240">
+<g class="gridline"><line x1="55" y1="35" x2="625" y2="35"/><line x1="55" y1="80" x2="625" y2="80"/><line x1="55" y1="125" x2="625" y2="125"/><line x1="55" y1="170" x2="625" y2="170"/></g>
+<g class="axis"><line x1="55" y1="20" x2="55" y2="200"/><line x1="55" y1="200" x2="625" y2="200"/></g>
+<polyline class="blue" points="65,168 145,151 225,158 305,126 385,112 465,87 545,95 615,68"/>
+<g fill="#286ac7"><circle cx="65" cy="168" r="5"/><circle cx="145" cy="151" r="5"/><circle cx="225" cy="158" r="5"/><circle cx="305" cy="126" r="5"/><circle cx="385" cy="112" r="5"/><circle cx="465" cy="87" r="5"/><circle cx="545" cy="95" r="5"/><circle cx="615" cy="68" r="5"/></g>
+<g font-size="10" fill="#667"><text x="55" y="220">Jan</text><text x="135" y="220">Feb</text><text x="215" y="220">Mar</text><text x="295" y="220">Apr</text><text x="375" y="220">May</text><text x="455" y="220">Jun</text><text x="535" y="220">Jul</text><text x="605" y="220">Aug</text></g>
+</svg>
+</div>
+</div>
+
+<div id="gScope" class="graph-panel">
+<div class="two">
+<div class="chart"><div class="chart-title">GHG Emission Analytics</div><div class="chart-sub">Illustrative Scope 1, 2 and 3 contribution</div>
+<div class="donut ghg-donut"><div><b>5,520</b><small>tCO₂e</small></div></div>
+<div class="legend"><span><i style="background:#2d69c4"></i>Scope 3 62%</span><span><i style="background:#36c6d8"></i>Scope 1 22%</span><span><i style="background:#79ddd0"></i>Scope 2 16%</span></div>
+</div>
+<div class="chart"><div class="chart-title">Data Confidence by Scope</div>
+<div class="bars">
+<div class="r"><span>Scope 1</span><div class="track"><div class="fill" style="width:81%"></div></div><b>81%</b></div>
+<div class="r"><span>Scope 2</span><div class="track"><div class="fill" style="width:88%"></div></div><b>88%</b></div>
+<div class="r"><span>Scope 3</span><div class="track"><div class="fill" style="width:61%"></div></div><b>61%</b></div>
+</div>
+<p class="why">Scope 3 carries lower confidence where supplier and logistics evidence still depends on allocations, estimates or secondary factors.</p>
+</div>
+</div>
+</div>
+
+<div id="gProdScope" class="graph-panel">
+<div class="chart">
+<div class="chart-title">GHG Emissions Tracking — Production vs Emissions by Scope</div>
+<div class="chart-sub">Restored from the original Holistic ESG concept: stacked scope emissions plus production and target path.</div>
+<svg class="svg" viewBox="0 0 850 250">
+<g class="gridline"><line x1="55" y1="35" x2="820" y2="35"/><line x1="55" y1="85" x2="820" y2="85"/><line x1="55" y1="135" x2="820" y2="135"/><line x1="55" y1="185" x2="820" y2="185"/></g>
+<g class="axis"><line x1="55" y1="20" x2="55" y2="210"/><line x1="55" y1="210" x2="820" y2="210"/></g>
+<g>
+<rect class="barblue" x="75" y="78" width="42" height="52"/><rect class="barcyan" x="75" y="130" width="42" height="25"/><rect class="barred" x="75" y="155" width="42" height="24"/><rect class="barpink" x="75" y="179" width="42" height="16"/>
 <rect class="barblue" x="160" y="68" width="42" height="61"/><rect class="barcyan" x="160" y="129" width="42" height="29"/><rect class="barred" x="160" y="158" width="42" height="25"/><rect class="barpink" x="160" y="183" width="42" height="14"/>
 <rect class="barblue" x="245" y="55" width="42" height="72"/><rect class="barcyan" x="245" y="127" width="42" height="32"/><rect class="barred" x="245" y="159" width="42" height="27"/><rect class="barpink" x="245" y="186" width="42" height="13"/>
 <rect class="barblue" x="330" y="70" width="42" height="58"/><rect class="barcyan" x="330" y="128" width="42" height="30"/><rect class="barred" x="330" y="158" width="42" height="24"/><rect class="barpink" x="330" y="182" width="42" height="15"/>
 <rect class="barblue" x="415" y="62" width="42" height="64"/><rect class="barcyan" x="415" y="126" width="42" height="28"/><rect class="barred" x="415" y="154" width="42" height="27"/><rect class="barpink" x="415" y="181" width="42" height="16"/>
 <rect class="barblue" x="500" y="76" width="42" height="51"/><rect class="barcyan" x="500" y="127" width="42" height="26"/><rect class="barred" x="500" y="153" width="42" height="23"/><rect class="barpink" x="500" y="176" width="42" height="16"/>
 <rect class="barblue" x="585" y="84" width="42" height="43"/><rect class="barcyan" x="585" y="127" width="42" height="25"/><rect class="barred" x="585" y="152" width="42" height="22"/><rect class="barpink" x="585" y="174" width="42" height="14"/>
-<rect class="barblue" x="670" y="90" width="42" height="38"/><rect class="barcyan" x="670" y="128" width="42" height="23"/><rect class="barred" x="670" y="151" width="42" height="20"/><rect class="barpink" x="670" y="171" width="42" height="13"/></g>
-<polyline class="green" points="96,70 181,77 266,73 351,82 436,87 521,92 606,99 691,105"/><polyline class="yellow" points="96,92 181,92 266,92 351,92 436,92 521,92 606,92 691,92"/>
-<g font-size="10" fill="#667"><text x="78" y="225">Mar</text><text x="163" y="225">Apr</text><text x="248" y="225">May</text><text x="333" y="225">Jun</text><text x="418" y="225">Jul</text><text x="503" y="225">Aug</text><text x="588" y="225">Sep</text><text x="673" y="225">Oct</text></g></svg>
-<div class="legend"><span><i style="background:#2d69c4"></i>Scope 1</span><span><i style="background:#39c3db"></i>Scope 2</span><span><i style="background:#ee5b66"></i>Scope 3</span><span><i style="background:#f58aaa"></i>Other</span><span><i style="background:#22c89a"></i>Production</span><span><i style="background:#ffb000"></i>Target path</span></div></div>
+<rect class="barblue" x="670" y="90" width="42" height="38"/><rect class="barcyan" x="670" y="128" width="42" height="23"/><rect class="barred" x="670" y="151" width="42" height="20"/><rect class="barpink" x="670" y="171" width="42" height="13"/>
+</g>
+<polyline class="greenline" points="96,70 181,77 266,73 351,82 436,87 521,92 606,99 691,105"/>
+<polyline class="yellow" points="96,92 181,92 266,92 351,92 436,92 521,92 606,92 691,92"/>
+<g font-size="10" fill="#667"><text x="78" y="225">Mar</text><text x="163" y="225">Apr</text><text x="248" y="225">May</text><text x="333" y="225">Jun</text><text x="418" y="225">Jul</text><text x="503" y="225">Aug</text><text x="588" y="225">Sep</text><text x="673" y="225">Oct</text></g>
+</svg>
+<div class="legend"><span><i style="background:#2d69c4"></i>Scope 1</span><span><i style="background:#39c3db"></i>Scope 2</span><span><i style="background:#ee5b66"></i>Scope 3</span><span><i style="background:#f58aaa"></i>Other</span><span><i style="background:#22c89a"></i>Production</span><span><i style="background:#ffb000"></i>Target path</span></div>
+</div>
+</div>
 
-<h3>Target Tracking</h3>
-<div class="chart"><div class="two"><div><svg class="svg" viewBox="0 0 650 250"><g class="gridline"><line x1="55" y1="35" x2="625" y2="35"/><line x1="55" y1="80" x2="625" y2="80"/><line x1="55" y1="125" x2="625" y2="125"/><line x1="55" y1="170" x2="625" y2="170"/></g><g class="axis"><line x1="55" y1="20" x2="55" y2="205"/><line x1="55" y1="205" x2="625" y2="205"/></g><polyline class="purple" points="65,155 155,122 245,90 335,55"/><polyline class="orange" points="65,155 155,170 245,184 335,195 425,205 515,214"/><polyline class="green" points="335,55 425,88 515,132 605,178"/><polyline class="yellow" points="335,55 425,35 515,26 605,20"/><g font-size="10" fill="#667"><text x="55" y="228">2018</text><text x="145" y="228">2021</text><text x="235" y="228">2024</text><text x="325" y="228">2027</text><text x="415" y="228">2030</text><text x="505" y="228">2033</text></g></svg></div><div class="suggest"><b>Suggested Projects</b><br><br>• Waste-heat recovery<br>• Renewable electricity sourcing<br>• Low-carbon raw-material alternatives<br>• Steam-system optimization<br>• Supplier PCF improvement program</div></div><div class="legend"><span><i style="background:#b54df0"></i>Actual journey</span><span><i style="background:#22c89a"></i>Predicted with solution</span><span><i style="background:#ffb000"></i>Predicted without solution</span><span><i style="background:#ff7a18"></i>Target path</span></div></div>
+<div id="gTarget" class="graph-panel">
+<div class="chart">
+<div class="chart-title">Target Tracking</div>
+<div class="two">
+<div>
+<svg class="svg" viewBox="0 0 650 250">
+<g class="gridline"><line x1="55" y1="35" x2="625" y2="35"/><line x1="55" y1="80" x2="625" y2="80"/><line x1="55" y1="125" x2="625" y2="125"/><line x1="55" y1="170" x2="625" y2="170"/></g>
+<g class="axis"><line x1="55" y1="20" x2="55" y2="205"/><line x1="55" y1="205" x2="625" y2="205"/></g>
+<polyline class="purple" points="65,155 155,122 245,90 335,55"/>
+<polyline class="orange" points="65,155 155,170 245,184 335,195 425,205 515,214"/>
+<polyline class="greenline" points="335,55 425,88 515,132 605,178"/>
+<polyline class="yellow" points="335,55 425,35 515,26 605,20"/>
+<g font-size="10" fill="#667"><text x="55" y="228">2018</text><text x="145" y="228">2021</text><text x="235" y="228">2024</text><text x="325" y="228">2027</text><text x="415" y="228">2030</text><text x="505" y="228">2033</text></g>
+</svg>
+</div>
+<div class="suggest"><b>Suggested Projects</b><br><br>
+• Waste-heat recovery<br>
+• Renewable electricity sourcing<br>
+• Low-carbon raw-material alternatives<br>
+• Steam-system optimization<br>
+• Supplier sustainability-data improvement programme
+</div>
+</div>
+<div class="legend"><span><i style="background:#b54df0"></i>Actual journey</span><span><i style="background:#22c89a"></i>Predicted with solution</span><span><i style="background:#ffb000"></i>Predicted without solution</span><span><i style="background:#ff7a18"></i>Target path</span></div>
+</div>
+</div>
 
-<h3>Data Entry Visibility</h3>
-<div class="two"><div class="chart"><div class="chart-title">Daily ESG records submitted</div><svg class="svg" viewBox="0 0 650 240"><g class="gridline"><line x1="45" y1="45" x2="625" y2="45"/><line x1="45" y1="95" x2="625" y2="95"/><line x1="45" y1="145" x2="625" y2="145"/><line x1="45" y1="195" x2="625" y2="195"/></g><g class="barblue"><rect x="65" y="70" width="28" height="125" rx="5"/><rect x="110" y="125" width="28" height="70" rx="5"/><rect x="155" y="76" width="28" height="119" rx="5"/><rect x="200" y="48" width="28" height="147" rx="5"/><rect x="245" y="98" width="28" height="97" rx="5"/><rect x="290" y="63" width="28" height="132" rx="5"/><rect x="335" y="53" width="28" height="142" rx="5"/><rect x="380" y="87" width="28" height="108" rx="5"/><rect x="425" y="71" width="28" height="124" rx="5"/><rect x="470" y="129" width="28" height="66" rx="5"/><rect x="515" y="103" width="28" height="92" rx="5"/><rect x="560" y="47" width="28" height="148" rx="5"/></g><g class="barcyan"><rect x="200" y="115" width="28" height="80"/><rect x="245" y="130" width="28" height="65"/><rect x="290" y="110" width="28" height="85"/></g></svg></div>
-<div class="chart"><div class="chart-title">Record status</div><div class="donut"><div><b>392</b><small>records</small></div></div><div class="legend"><span><i style="background:#2d69c4"></i>To be submitted 79%</span><span><i style="background:#36c6d8"></i>Validated 15%</span><span><i style="background:#79ddd0"></i>Review 6%</span></div></div></div>
-<div class="chart"><table class="table"><tr><th>Record</th><th>Location</th><th>Indicator</th><th>Period</th><th>Role</th><th>Status</th></tr><tr><td>957</td><td>Plant A</td><td>GHG Emission</td><td>Jul-26</td><td>Data entry</td><td><span class="status">Review</span></td></tr><tr><td>958</td><td>Plant B</td><td>Waste</td><td>Jul-26</td><td>Data entry</td><td><span class="status">Submitted</span></td></tr><tr><td>959</td><td>Plant C</td><td>Energy</td><td>Jul-26</td><td>Validator</td><td><span class="status">Validated</span></td></tr></table></div>
+<div id="gRecords" class="graph-panel">
+<div class="two">
+<div class="chart">
+<div class="chart-title">Daily ESG Records Submitted</div>
+<svg class="svg" viewBox="0 0 650 240">
+<g class="gridline"><line x1="45" y1="45" x2="625" y2="45"/><line x1="45" y1="95" x2="625" y2="95"/><line x1="45" y1="145" x2="625" y2="145"/><line x1="45" y1="195" x2="625" y2="195"/></g>
+<g class="barblue"><rect x="65" y="70" width="28" height="125" rx="5"/><rect x="110" y="125" width="28" height="70" rx="5"/><rect x="155" y="76" width="28" height="119" rx="5"/><rect x="200" y="48" width="28" height="147" rx="5"/><rect x="245" y="98" width="28" height="97" rx="5"/><rect x="290" y="63" width="28" height="132" rx="5"/><rect x="335" y="53" width="28" height="142" rx="5"/><rect x="380" y="87" width="28" height="108" rx="5"/><rect x="425" y="71" width="28" height="124" rx="5"/><rect x="470" y="129" width="28" height="66" rx="5"/><rect x="515" y="103" width="28" height="92" rx="5"/><rect x="560" y="47" width="28" height="148" rx="5"/></g>
+<g class="barcyan"><rect x="200" y="115" width="28" height="80"/><rect x="245" y="130" width="28" height="65"/><rect x="290" y="110" width="28" height="85"/></g>
+</svg>
+</div>
+<div class="chart"><div class="chart-title">Record Status</div>
+<div class="donut" style="background:conic-gradient(#2d69c4 0 79%,#36c6d8 79% 94%,#79ddd0 94% 100%)"><div><b>392</b><small>records</small></div></div>
+<div class="legend"><span><i style="background:#2d69c4"></i>To be submitted 79%</span><span><i style="background:#36c6d8"></i>Validated 15%</span><span><i style="background:#79ddd0"></i>Review 6%</span></div>
+</div>
+</div>
+<div class="chart">
+<table class="table"><tr><th>Record</th><th>Location</th><th>Indicator</th><th>Period</th><th>Role</th><th>Status</th></tr>
+<tr><td>957</td><td>Plant 1</td><td>GHG Emission</td><td>Jul-26</td><td>Data entry</td><td><span class="status">Review</span></td></tr>
+<tr><td>958</td><td>Plant 2</td><td>Waste</td><td>Jul-26</td><td>Data entry</td><td><span class="status">Submitted</span></td></tr>
+<tr><td>959</td><td>Plant 3</td><td>Energy</td><td>Jul-26</td><td>Validator</td><td><span class="status">Validated</span></td></tr>
+</table>
+</div>
+</div>
 
-<h3>AI-Powered Insights</h3><div class="ai"><div><small>HOTSPOT</small><b>Raw materials</b><span>Largest illustrative emissions contributor.</span></div><div><small>ANOMALY</small><b>Energy intensity ↑</b><span>Above the recent process baseline.</span></div><div><small>FORECAST</small><b>Target deviation</b><span>Projected path compared with target.</span></div><div><small>ACTION</small><b>Supplier + process</b><span>Prioritize supplier PCF and energy optimization.</span></div></div>
-<button class="action" style="margin-top:15px" onclick="run('holisticLog',['Plant OT + ERP + LIMS + supplier data aggregated','Scope 1, 2 and 3 analytics refreshed','Target glide path recalculated','Data-entry completeness and validation status checked','AI hotspot and anomaly analysis completed','Management ESG snapshot generated'])">Generate Management ESG Snapshot →</button><div id="holisticLog" class="log">Ready.</div>
-<div class="source">Graph designs are original chemical-industry adaptations inspired by the visual concepts in the reference screenshots; all displayed numbers are illustrative.</div></div></section>
+<div id="gWater" class="graph-panel">
+<div class="chart"><div class="chart-title">Water Withdrawal, Reuse & Discharge</div><div class="chart-sub">Additional ESG dimension added to the original dashboard</div>
+<div class="bars">
+<div class="r"><span>Withdrawal</span><div class="track"><div class="fill" style="width:88%"></div></div><b>8,800</b></div>
+<div class="r"><span>Reused</span><div class="track"><div class="fill" style="width:42%;background:#22c89a"></div></div><b>4,200</b></div>
+<div class="r"><span>Discharged</span><div class="track"><div class="fill" style="width:36%;background:#36c6d8"></div></div><b>3,600</b></div>
+</div>
+<div class="note">Illustrative m³ values.</div>
+</div>
+</div>
 
-</div><script>
-document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.tab,.panel').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.getElementById(b.dataset.id).classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}));
-function run(id,steps){const el=document.getElementById(id);el.innerHTML='';steps.forEach((s,i)=>setTimeout(()=>{const d=document.createElement('div');d.textContent='['+(i+1)+'] '+s;el.appendChild(d);el.scrollTop=el.scrollHeight},i*350))}
-</script></body></html>
+<div id="gWaste" class="graph-panel">
+<div class="two">
+<div class="chart"><div class="chart-title">Waste Destination</div>
+<div class="bars">
+<div class="r"><span>Recovered / recycled</span><div class="track"><div class="fill" style="width:54%;background:#22c89a"></div></div><b>54%</b></div>
+<div class="r"><span>Authorized treatment</span><div class="track"><div class="fill" style="width:28%;background:#36c6d8"></div></div><b>28%</b></div>
+<div class="r"><span>Incineration / disposal</span><div class="track"><div class="fill" style="width:18%;background:#b94151"></div></div><b>18%</b></div>
+</div>
+</div>
+<div class="chart"><div class="chart-title">Waste Data Maturity</div>
+<div class="bars">
+<div class="r"><span>Measured</span><div class="track"><div class="fill" style="width:48%"></div></div><b>48%</b></div>
+<div class="r"><span>Documented</span><div class="track"><div class="fill" style="width:35%;background:#cf9c2e"></div></div><b>35%</b></div>
+<div class="r"><span>Estimated</span><div class="track"><div class="fill" style="width:17%;background:#b94151"></div></div><b>17%</b></div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="gConf" class="graph-panel">
+<div class="chart"><div class="chart-title">Data Confidence by Sustainability Stream</div>
+<div class="bars">
+<div class="r"><span>Carbon / GHG</span><div class="track"><div class="fill" style="width:74%"></div></div><b>74%</b></div>
+<div class="r"><span>Energy</span><div class="track"><div class="fill" style="width:82%"></div></div><b>82%</b></div>
+<div class="r"><span>Water</span><div class="track"><div class="fill" style="width:67%"></div></div><b>67%</b></div>
+<div class="r"><span>Waste</span><div class="track"><div class="fill" style="width:48%"></div></div><b>48%</b></div>
+<div class="r"><span>Transport</span><div class="track"><div class="fill" style="width:63%"></div></div><b>63%</b></div>
+<div class="r"><span>Circularity</span><div class="track"><div class="fill" style="width:56%"></div></div><b>56%</b></div>
+</div>
+</div>
+</div>
+
+<div id="gDependencyESG" class="graph-panel">
+<div class="chart"><div class="chart-title">Exposure-Weighted Confidence Across the Value Chain</div>
+<div class="tablewrap"><table class="table">
+<tr><th>Stakeholder group</th><th>Low-confidence exposure</th><th>Medium-confidence exposure</th><th>High-confidence exposure</th><th>Largest dependency</th></tr>
+<tr><td>Suppliers</td><td>8%</td><td>67%</td><td>25%</td><td><span class="conf med">MEDIUM</span> 67%</td></tr>
+<tr><td>Transporters</td><td>10%</td><td>70%</td><td>20%</td><td><span class="conf med">MEDIUM</span> 70%</td></tr>
+<tr><td>Plants</td><td>10%</td><td>30%</td><td>60%</td><td><span class="conf high">HIGH</span> 60%</td></tr>
+<tr><td>Distributors</td><td>20%</td><td>50%</td><td>30%</td><td><span class="conf med">MEDIUM</span> 50%</td></tr>
+<tr><td>Customers</td><td>20%</td><td>45%</td><td>35%</td><td><span class="conf med">MEDIUM</span> 45%</td></tr>
+</table></div>
+</div>
+</div>
+
+<h3>Illustrative AI Management Report</h3>
+<div class="ai"><b>Management-level AI analysis — only in Holistic ESG</b>
+<ul>
+<li><b>HOTSPOT — Raw materials:</b> largest illustrative emissions contributor.</li>
+<li><b>ANOMALY — Energy intensity:</b> above the recent process baseline.</li>
+<li><b>FORECAST — Target deviation:</b> projected path is compared with the target glide path.</li>
+<li><b>ACTION — Supplier + process:</b> supplier data improvement and process/energy optimization are priority investigation areas.</li>
+<li><b>Dependency insight:</b> Medium-confidence suppliers cover 67% of illustrative input volume and Medium-confidence transporters cover 70% of transport exposure; improving these groups can affect a larger share of the company's sustainability-data coverage than focusing only on the smallest Low-confidence entities.</li>
+</ul>
+</div>
+
+<button class="action" style="margin-top:15px" onclick="run('holisticLog',['Plant OT + ERP + LIMS + supplier data aggregated','Energy, water, waste and GHG dashboards refreshed','Scope 1, 2 and 3 analytics refreshed','Production-vs-emissions trend updated','Target glide path recalculated','Data-entry completion and validation checked','Confidence + dependency exposure consolidated','Management ESG snapshot generated'])">Generate Management ESG Snapshot →</button>
+<div id="holisticLog" class="log">Ready.</div>
+<div class="note">All displayed numbers, shares and management statements are illustrative prototype values. A live implementation should use actual organizational data, validated calculation boundaries, approved emission factors and agreed data-confidence rules.</div>
+</div></section>
+
+
+</div>
+
+<script>
+
+const selectedEntities={supplier:'A',transport:'A',plant:'1',distributor:'A',customer:'A',circularity:'A'};
+
+const entityData={
+supplier:{
+ A:{
+  metrics:['Supplier A','1,250 kg / 98.7%','2.10 tCO₂e','<span class="conf low">LOW</span>'],
+  subs:['Solvent & process chemical','Batch SA-104','Illustrative supplier-stage','Manual + incomplete evidence'],
+  head:['Data stream','Illustrative value','Capture / evidence','Confidence','Gap / next feasible step'],
+  rows:[
+   ['Raw-material mass','1,250 kg','Manual weighbridge entry','MEDIUM','Digitize weighbridge export'],
+   ['Purity / quality','98.7%','Paper CoA','MEDIUM','Scan / structured CoA'],
+   ['Electricity','Estimated','Monthly bill; no batch allocation','LOW','Allocate by production volume'],
+   ['Steam / fuel','Estimated','Operator declaration only','LOW','Invoice-linked fuel record'],
+   ['Water','Not consistently recorded','Manual notebook','LOW','Structured monthly meter log'],
+   ['Waste','52 kg','Operator estimate','LOW','Documented weighing + treatment evidence']
+  ],
+  conf:['LOW','MEDIUM'], maturity:['Estimated','Documented'],
+  extra:'<div class="ribbon"><b>Dependency:</b> Supplier A represents 18% of illustrative input volume. Main confidence gaps are energy, steam/fuel, water and waste.</div>',
+  log:['Supplier A loaded','Manual and paper evidence checked','Supplier carbon = 2.10 tCO₂e (illustrative)','Overall confidence = LOW']
+ },
+ B:{
+  metrics:['Supplier B','1,003.6 kg / 99.2%','1.84 tCO₂e','<span class="conf med">MEDIUM</span>'],
+  subs:['Bulk raw material','Batch RM-001','Illustrative supplier-stage','Invoices + Excel + selected meters'],
+  head:['Data stream','Illustrative value','Capture / evidence','Confidence','Gap / next feasible step'],
+  rows:[
+   ['Raw-material mass','1,003.6 kg','Calibrated load cell + goods receipt','HIGH','Maintain calibration / ERP linkage'],
+   ['Purity / quality','99.2%','LIMS / CoA','HIGH','Digital CoA exchange'],
+   ['Electricity','1,820 kWh','Invoice allocated to production','MEDIUM','Process submeter if material'],
+   ['Fuel / steam','Allocated estimate','Manual register + invoice','LOW','Link batch and fuel records'],
+   ['Water','14.2 m³','Meter reading entered in Excel','MEDIUM','Timestamped meter export'],
+   ['Waste','38 kg','Manual weighing','MEDIUM','Link treatment certificate']
+  ],
+  conf:['MEDIUM'], maturity:['Estimated','Documented','Measured'],
+  extra:'<div class="ribbon"><b>Dependency:</b> Supplier B represents 42% of illustrative input volume, making it a high-impact candidate for confidence improvement.</div>',
+  log:['Supplier B loaded','Batch, QC and sustainability evidence linked','Supplier carbon = 1.84 tCO₂e (illustrative)','Overall confidence = MEDIUM']
+ },
+ C:{
+  metrics:['Supplier C','780 kg / 99.6%','1.18 tCO₂e','<span class="conf high">HIGH</span>'],
+  subs:['Specialty intermediate','Batch SC-209','Illustrative supplier-stage','ERP + meters + verified records'],
+  head:['Data stream','Illustrative value','Capture / evidence','Confidence','Gap / next feasible step'],
+  rows:[
+   ['Raw-material mass','780 kg','Digital load cell + ERP','HIGH','Maintain calibration'],
+   ['Purity / quality','99.6%','Digital LIMS / CoA','HIGH','Maintain integration'],
+   ['Electricity','1,060 kWh','Process submeter','HIGH','Automated factor update'],
+   ['Fuel / steam','0.62 t steam','Digital steam meter','HIGH','Periodic verification'],
+   ['Water','8.4 m³','Digital meter','HIGH','Maintain data validation'],
+   ['Waste','12 kg','Digital weighing + manifest','HIGH','Maintain recycler verification']
+  ],
+  conf:['HIGH'], maturity:['Measured','Automated','Verified'],
+  extra:'<div class="ribbon"><b>Dependency:</b> Supplier C represents 20% of illustrative input volume with strongly traceable data.</div>',
+  log:['Supplier C loaded','Digital ERP/LIMS/meter evidence verified','Supplier carbon = 1.18 tCO₂e (illustrative)','Overall confidence = HIGH']
+ }
+},
+transport:{
+ A:{
+  metrics:['Transporter A','Road tanker / 42 km','0.09 tCO₂e','<span class="conf med">MEDIUM</span>'],
+  subs:['40% transport exposure','GPS-linked trip','Illustrative shipment','GPS strong; fuel allocated'],
+  head:['Transport data','Evidence','Confidence','Gap / next step'],
+  rows:[
+   ['Distance 42 km','GPS / route log','HIGH','Maintain automatic route capture'],
+   ['Load 1,003.6 kg','Batch + weigh record','HIGH','Digital shipment linkage'],
+   ['Fuel consumption','Allocated transporter invoice','MEDIUM','Trip-specific fuel evidence'],
+   ['Empty return','Assumption','LOW','Capture return-load status']
+  ],
+  maturity:['Documented','Measured'],extra:'<div class="ribbon"><b>Mode:</b> Road tanker. <b>Exposure:</b> 40% of illustrative ton-km.</div>',
+  log:['Transporter A loaded','Road tanker trip checked','Transport carbon = 0.09 tCO₂e','Overall confidence = MEDIUM']
+ },
+ B:{
+  metrics:['Transporter B','Road container / 128 km','0.14 tCO₂e','<span class="conf high">HIGH</span>'],
+  subs:['20% transport exposure','Telematics + digital POD','Illustrative shipment','GPS + fuel + custody records'],
+  head:['Transport data','Evidence','Confidence','Gap / next step'],
+  rows:[
+   ['Distance 128 km','GPS telematics','HIGH','Maintain'],
+   ['Load 6.8 t','Digital weigh record','HIGH','Maintain'],
+   ['Fuel consumption','Vehicle telematics','HIGH','Periodic validation'],
+   ['Proof of delivery','Digital POD','HIGH','Maintain custody chain']
+  ],
+  maturity:['Measured','Automated','Verified'],extra:'<div class="ribbon"><b>Mode:</b> Road container. <b>Exposure:</b> 20% of illustrative ton-km.</div>',
+  log:['Transporter B loaded','Telematics + digital POD verified','Transport carbon = 0.14 tCO₂e','Overall confidence = HIGH']
+ },
+ C:{
+  metrics:['Transporter C','Rail / 620 km','0.22 tCO₂e','<span class="conf med">MEDIUM</span>'],
+  subs:['20% transport exposure','Rail shipment records','Illustrative shipment','Route documented; energy factor secondary'],
+  head:['Transport data','Evidence','Confidence','Gap / next step'],
+  rows:[
+   ['Distance 620 km','Rail consignment record','HIGH','Maintain'],
+   ['Load 24 t','Rail receipt','HIGH','Maintain'],
+   ['Energy intensity','Standard rail factor','MEDIUM','Carrier-specific factor'],
+   ['Transfer handling','Manual transfer record','MEDIUM','Digital custody event']
+  ],
+  maturity:['Documented','Measured'],extra:'<div class="ribbon"><b>Mode:</b> Rail. <b>Exposure:</b> 20% of illustrative ton-km.</div>',
+  log:['Transporter C loaded','Rail records checked','Transport carbon = 0.22 tCO₂e','Overall confidence = MEDIUM']
+ }
+},
+plant:{
+ '1':{
+  metrics:['Plant 1','60% production / 91.7% yield','0.46 tCO₂e','<span class="conf high">HIGH</span>'],
+  subs:['Primary site','920 kg finished batch','Illustrative batch footprint','ERP/MES + meters + selected sensors'],
+  head:['Plant stream','Value','Capture','Confidence','Next step'],
+  rows:[
+   ['Electricity','418 kWh','Digital meter','HIGH','Historian integration'],
+   ['Steam','1.8 t','Operator log + allocation','MEDIUM','Dedicated steam meter'],
+   ['Water','9.6 m³','Shift meter reading','MEDIUM','Timestamped capture'],
+   ['Yield','91.7%','ERP/MES batch record','HIGH','Maintain'],
+   ['Waste / scrap','30 kg','Manual weighing + manifest','MEDIUM','Digital scale linkage']
+  ],
+  maturity:['Measured','Automated'],extra:'<div class="ribbon"><b>Material balance:</b> 1,003.6 kg input → 920 kg product + 35 kg recovered + 30 kg waste + 18.6 kg process loss.</div>',
+  log:['Plant 1 loaded','Material balance checked','Plant carbon = 0.46 tCO₂e','Overall confidence = HIGH']
+ },
+ '2':{
+  metrics:['Plant 2','30% production / 88.9% yield','0.61 tCO₂e','<span class="conf med">MEDIUM</span>'],
+  subs:['Secondary site','Illustrative batch','Higher energy intensity','Digital meters + ERP + Excel'],
+  head:['Plant stream','Value','Capture','Confidence','Next step'],
+  rows:[
+   ['Electricity','505 kWh','Digital meter','HIGH','Maintain'],
+   ['Steam','2.4 t','Manual allocation','LOW','Steam meter'],
+   ['Water','12.8 m³','Meter + Excel','MEDIUM','Automate timestamp'],
+   ['Yield','88.9%','ERP batch record','HIGH','Investigate process losses'],
+   ['Waste / scrap','44 kg','Manual weighing','MEDIUM','Manifest linkage']
+  ],
+  maturity:['Documented','Measured'],extra:'<div class="ribbon"><b>Observation:</b> lower yield and higher steam usage make Plant 2 both a sustainability and data-quality focus area.</div>',
+  log:['Plant 2 loaded','Energy, steam and yield checked','Plant carbon = 0.61 tCO₂e','Overall confidence = MEDIUM']
+ },
+ '3':{
+  metrics:['Plant 3','10% production / 85.4% yield','0.73 tCO₂e','<span class="conf low">LOW</span>'],
+  subs:['Legacy site','Illustrative batch','High estimated share','Paper logs + monthly invoices'],
+  head:['Plant stream','Value','Capture','Confidence','Next step'],
+  rows:[
+   ['Electricity','Estimated allocation','Monthly invoice','LOW','Structured production allocation'],
+   ['Steam','Estimated','Paper log','LOW','Steam measurement'],
+   ['Water','Manual notebook','Manual log','LOW','Meter + digital record'],
+   ['Yield','85.4%','Paper batch record','MEDIUM','Digitize batch record'],
+   ['Waste / scrap','58 kg','Operator estimate','LOW','Documented weighing']
+  ],
+  maturity:['Estimated','Documented'],extra:'<div class="ribbon"><b>Observation:</b> Plant 3 is only 10% of production but has the lowest data confidence, useful for phased digitalization.</div>',
+  log:['Plant 3 loaded','Paper and invoice evidence checked','Plant carbon = 0.73 tCO₂e (illustrative)','Overall confidence = LOW']
+ }
+},
+distributor:{
+ A:{
+  metrics:['Distributor A','35% volume / 12 days','0.07 tCO₂e','<span class="conf med">MEDIUM</span>'],
+  subs:['Regional DC-04','Largest distributor','Illustrative','ERP + allocated warehouse energy'],
+  head:['Distribution data','Source','Confidence','Improvement'],
+  rows:[
+   ['Warehouse electricity','Utility invoice / throughput allocation','MEDIUM','Zone submeter'],
+   ['Storage duration','ERP timestamps','HIGH','Maintain'],
+   ['Secondary distance','Transport invoice / route','MEDIUM','GPS integration'],
+   ['Packaging returns','Manual incident register','LOW','Digitize return records']
+  ],
+  maturity:['Documented','Measured'],extra:'<div class="ribbon"><b>Dependency:</b> 35% of illustrative product volume.</div>',
+  log:['Distributor A loaded','Warehouse and secondary logistics checked','Distributor carbon = 0.07 tCO₂e','Overall confidence = MEDIUM']
+ },
+ B:{
+  metrics:['Distributor B','30% volume / 8 days','0.05 tCO₂e','<span class="conf high">HIGH</span>'],
+  subs:['Automated warehouse','Digital WMS','Illustrative','Metered warehouse + digital dispatch'],
+  head:['Distribution data','Source','Confidence','Improvement'],
+  rows:[
+   ['Warehouse electricity','Submetered zone','HIGH','Maintain'],
+   ['Storage duration','WMS timestamps','HIGH','Maintain'],
+   ['Secondary distance','GPS / TMS','HIGH','Maintain'],
+   ['Packaging returns','Digital returns module','HIGH','Periodic verification']
+  ],
+  maturity:['Measured','Automated','Verified'],extra:'<div class="ribbon"><b>Dependency:</b> 30% of illustrative product volume.</div>',
+  log:['Distributor B loaded','WMS + meters + dispatch data checked','Distributor carbon = 0.05 tCO₂e','Overall confidence = HIGH']
+ },
+ C:{
+  metrics:['Distributor C','20% volume / 18 days','0.11 tCO₂e','<span class="conf low">LOW</span>'],
+  subs:['Smaller regional distributor','Longer storage','Illustrative','Manual records + invoices'],
+  head:['Distribution data','Source','Confidence','Improvement'],
+  rows:[
+   ['Warehouse electricity','Shared utility bill','LOW','Allocate by floor area / throughput'],
+   ['Storage duration','Paper stock register','MEDIUM','Digitize timestamps'],
+   ['Secondary distance','Manual route record','LOW','GPS / route evidence'],
+   ['Packaging returns','Not consistently recorded','LOW','Structured return log']
+  ],
+  maturity:['Estimated','Documented'],extra:'<div class="ribbon"><b>Dependency:</b> 20% of illustrative product volume.</div>',
+  log:['Distributor C loaded','Manual records checked','Distributor carbon = 0.11 tCO₂e','Overall confidence = LOW']
+ }
+},
+customer:{
+ A:{
+  metrics:['Customer A','45% sales volume','2.46 tCO₂e upstream','<span class="conf med">MEDIUM</span>'],
+  subs:['Industrial formulation','Largest customer','Illustrative upstream footprint','Receipt data strong; use-stage weak'],
+  head:['Downstream data','Capture','Confidence','Improvement'],
+  rows:[
+   ['Quantity delivered','Invoice / ERP','HIGH','Maintain'],
+   ['Use-stage energy','Industry-average assumption','LOW','Customer activity data'],
+   ['Packaging returned','Return documentation','MEDIUM','Digital return record']
+  ],
+  maturity:['Documented','Measured'],extra:'<div class="ribbon"><b>Dependency:</b> 45% of illustrative sales/product volume.</div>',
+  log:['Customer A loaded','Product sustainability record consolidated','Upstream footprint = 2.46 tCO₂e','Overall confidence = MEDIUM']
+ },
+ B:{
+  metrics:['Customer B','25% sales volume','2.31 tCO₂e upstream','<span class="conf high">HIGH</span>'],
+  subs:['Advanced manufacturing customer','Structured data exchange','Illustrative upstream footprint','Digital receipt + use/recovery data'],
+  head:['Downstream data','Capture','Confidence','Improvement'],
+  rows:[
+   ['Quantity delivered','Digital ERP receipt','HIGH','Maintain'],
+   ['Use-stage energy','Customer digital report','HIGH','Periodic verification'],
+   ['Packaging returned','QR-linked recovery record','HIGH','Maintain']
+  ],
+  maturity:['Measured','Automated','Verified'],extra:'<div class="ribbon"><b>Dependency:</b> 25% of illustrative sales/product volume.</div>',
+  log:['Customer B loaded','Structured downstream data verified','Upstream footprint = 2.31 tCO₂e','Overall confidence = HIGH']
+ },
+ C:{
+  metrics:['Customer C','20% sales volume','2.58 tCO₂e upstream','<span class="conf low">LOW</span>'],
+  subs:['Smaller industrial customer','Limited downstream reporting','Illustrative upstream footprint','Invoice/receipt only'],
+  head:['Downstream data','Capture','Confidence','Improvement'],
+  rows:[
+   ['Quantity delivered','Invoice / receipt','HIGH','Maintain'],
+   ['Use-stage energy','No primary data','LOW','Basic customer questionnaire'],
+   ['Packaging returned','Not reported','LOW','Introduce simple recovery declaration']
+  ],
+  maturity:['Estimated','Documented'],extra:'<div class="ribbon"><b>Dependency:</b> 20% of illustrative sales/product volume.</div>',
+  log:['Customer C loaded','Limited downstream evidence checked','Upstream footprint = 2.58 tCO₂e','Overall confidence = LOW']
+ }
+},
+circularity:{
+ A:{
+  metrics:['Recovery Partner A','Solvent recovery','0.04 tCO₂e','<span class="conf high">HIGH</span>'],
+  subs:['Authorized recycler','68% selected-stream recovery','Illustrative treatment footprint','Digital weighing + certificates'],
+  head:['Circularity stream','Evidence','Confidence','Improvement'],
+  rows:[
+   ['Recovered solvent','Digital weigh record','HIGH','Maintain'],
+   ['Treatment certificate','Digital certificate','HIGH','Maintain'],
+   ['Transport to recycler','GPS + invoice','HIGH','Maintain'],
+   ['Recovered output','Recycler mass balance','HIGH','Periodic verification']
+  ],
+  maturity:['Measured','Automated','Verified'],extra:'<div class="ribbon"><b>Route:</b> solvent recovery and reuse with strong traceability.</div>',
+  log:['Recovery Partner A loaded','Recovery + certificate evidence linked','Treatment footprint = 0.04 tCO₂e','Overall confidence = HIGH']
+ },
+ B:{
+  metrics:['Recovery Partner B','Hazardous waste treatment','0.08 tCO₂e','<span class="conf med">MEDIUM</span>'],
+  subs:['Authorized treatment facility','Manifest-based route','Illustrative treatment footprint','Documented weighing + partial digital records'],
+  head:['Circularity stream','Evidence','Confidence','Improvement'],
+  rows:[
+   ['Waste quantity','Manual weigh ticket','MEDIUM','Digital scale export'],
+   ['Manifest','Authorized manifest','HIGH','Maintain'],
+   ['Treatment method','Vendor certificate','MEDIUM','More detailed treatment data'],
+   ['Recovery percentage','Periodic vendor report','MEDIUM','Batch-level linkage']
+  ],
+  maturity:['Documented','Measured'],extra:'<div class="ribbon"><b>Route:</b> treatment with partial material recovery.</div>',
+  log:['Recovery Partner B loaded','Manifest and treatment evidence checked','Treatment footprint = 0.08 tCO₂e','Overall confidence = MEDIUM']
+ },
+ C:{
+  metrics:['Recovery Partner C','Incineration / disposal','0.13 tCO₂e','<span class="conf low">LOW</span>'],
+  subs:['Legacy disposal vendor','Limited recovery','Illustrative treatment footprint','Paper evidence + estimated treatment factor'],
+  head:['Circularity stream','Evidence','Confidence','Improvement'],
+  rows:[
+   ['Waste quantity','Manual estimate','LOW','Documented weighing'],
+   ['Treatment certificate','Paper certificate','MEDIUM','Digital verification'],
+   ['Treatment emissions','Generic factor','LOW','Vendor-specific treatment data'],
+   ['Recovery percentage','Not reported','LOW','Require recovery disclosure']
+  ],
+  maturity:['Estimated','Documented'],extra:'<div class="ribbon"><b>Route:</b> incineration/disposal with limited circularity data.</div>',
+  log:['Recovery Partner C loaded','Paper and estimated evidence checked','Treatment footprint = 0.13 tCO₂e','Overall confidence = LOW']
+ }
+}
+};
+
+function confBadge(text){
+  const t=(text||'').toUpperCase();
+  const c=t==='HIGH'?'high':(t==='MEDIUM'?'med':'low');
+  return '<span class="conf '+c+'">'+t+'</span>';
+}
+function selectEntity(kind,key,btn){
+ selectedEntities[kind]=key;
+ const d=entityData[kind][key];
+ const ids=['m1','m2','m3','m4'], sids=['s1','s2','s3','s4'];
+ d.metrics.forEach((v,i)=>document.getElementById(kind+'_'+ids[i]).innerHTML=v);
+ d.subs.forEach((v,i)=>document.getElementById(kind+'_'+sids[i]).innerHTML=v);
+ document.getElementById(kind+'_extra').innerHTML=d.extra||'';
+ document.getElementById(kind+'_thead').innerHTML=d.head.map(x=>'<th>'+x+'</th>').join('');
+ document.getElementById(kind+'_tbody').innerHTML=d.rows.map(r=>'<tr>'+r.map((x,i)=>{
+   if((d.head[i]||'').toLowerCase()==='confidence') return '<td>'+confBadge(x)+'</td>';
+   return '<td>'+x+'</td>';
+ }).join('')+'</tr>').join('');
+ document.getElementById(kind+'_path').innerHTML=['Estimated','Documented','Measured','Automated','Verified'].map(x=>'<span class="stage '+((d.maturity||[]).includes(x)?'on':'')+'">'+x+'</span>').join('');
+ btn.closest('.entity-selector').querySelectorAll('.entity-btn').forEach(x=>x.classList.remove('active'));
+ btn.classList.add('active');
+ document.getElementById(kind+'Log').innerHTML='Ready.';
+}
+function initEntities(){
+ ['supplier','transport','plant','distributor','customer','circularity'].forEach(kind=>{
+   const btn=document.querySelector('#'+kind+' .entity-btn');
+   if(btn) selectEntity(kind,selectedEntities[kind],btn);
+ });
+}
+
+document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>{
+ document.querySelectorAll('.tab,.panel').forEach(x=>x.classList.remove('active'));
+ b.classList.add('active');
+ document.getElementById(b.dataset.id).classList.add('active');
+ window.scrollTo({top:0,behavior:'smooth'});
+}));
+function showInner(id,btn){
+ btn.closest('.card').querySelectorAll('.inner-btn').forEach(x=>x.classList.remove('active'));
+ btn.closest('.card').querySelectorAll('.inner-panel').forEach(x=>x.classList.remove('active'));
+ btn.classList.add('active'); document.getElementById(id).classList.add('active');
+}
+function showGraph(id,btn){
+ btn.closest('.card').querySelectorAll('.graph-btn').forEach(x=>x.classList.remove('active'));
+ btn.closest('.card').querySelectorAll('.graph-panel').forEach(x=>x.classList.remove('active'));
+ btn.classList.add('active'); document.getElementById(id).classList.add('active');
+}
+function run(id,steps){
+ const el=document.getElementById(id); el.innerHTML='';
+ steps.forEach((s,i)=>setTimeout(()=>{
+   const d=document.createElement('div'); d.textContent='['+(i+1)+'] '+s;
+   el.appendChild(d); el.scrollTop=el.scrollHeight;
+ },i*220));
+}
+initEntities();
+</script>
+</body>
+</html>
